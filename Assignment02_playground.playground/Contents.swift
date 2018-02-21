@@ -257,7 +257,7 @@ anyCommonElements([1, 2, 3], [3])
 
 
 func isEven(num: Int) -> Bool {
-    if num == 10 {
+    if num % 2 == 0 {
         return true
     } else {
         return false
@@ -277,14 +277,20 @@ print(isEven(num: 10))
 class myPlanets{
     enum Planet: Int {
         case mercury = 1, venus, earth, mars, jupiter, saturn, uranus, naptune
+    }
+    var planet: Planet
+    
+    init(_ planet: Planet) {
+        self.planet = planet
+    }
         func simpleDescription() -> String {
-            switch self {
+            switch self.planet {
             case .mercury:
                 return "mercury"
             case .venus:
                 return "venus"
             case .earth:
-                return "Earth is the planet I live on"
+                return "Earth is the planet I live on."
             case .mars:
                 return "mars"
             case .jupiter:
@@ -297,31 +303,10 @@ class myPlanets{
                 return "naptune"
             }
         }
-        func distance() -> String {
-            switch self {
-            case .mercury:
-                return "1st planet"
-            case .venus:
-                return "2nd planet"
-            case .earth:
-                return "Our planet"
-            case .mars:
-                return "Middle planet"
-            case .jupiter:
-                return "5th planet"
-            case .saturn:
-                return "6th planet"
-            case .uranus:
-                return "7th planet"
-            case .naptune:
-                return "8th planet"
-            }
-        }
     }
-}
 
-let earth = myPlanets.Planet.earth.simpleDescription()
-print(earth)
+let earth = myPlanets(.earth)
+print(earth.simpleDescription())
 
 
 
