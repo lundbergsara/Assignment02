@@ -33,6 +33,33 @@ print(Rank.jack)
 
 //: example experiment add color() and add red to spades and clubs and black for hearts and diamonda, (see above)
 
+
+
+
+
+//: example to see how the case of requesting the sunrise and sunset from a server.
+
+enum ServerResponse {
+    case result(String, String)
+    case failure(String)
+    case timeChange(String)
+}
+
+let success = ServerResponse.result("6:00 am", "8:09 pm")
+let failure = ServerResponse.failure("Out of cheese.")
+let timeChange = ServerResponse.timeChange("I'm a sleep")
+
+switch timeChange {
+case let .result(sunrise, sunset):
+    print("Sunrise is at \(sunrise) and sunset is at \(sunset).")
+case let .failure(message):
+    print("Failure...  \(message)")
+case let .timeChange(sleep):
+    print("... \(sleep)")
+}
+
+//: experiment, add a third.
+
 enum Suit: Int {
     case spades = 1
     case hearts, diamonds, clubs
@@ -63,33 +90,6 @@ enum Suit: Int {
 
 let heartsDescription = Suit.hearts.simpleDescription()
 let heartsColor = Suit.hearts.color()
-
-
-
-//: example to see how the case of requesting the sunrise and sunset from a server.
-
-enum ServerResponse {
-    case result(String, String)
-    case failure(String)
-    case timeChange(String)
-}
-
-let success = ServerResponse.result("6:00 am", "8:09 pm")
-let failure = ServerResponse.failure("Out of cheese.")
-let timeChange = ServerResponse.timeChange("I'm a sleep")
-
-switch timeChange {
-case let .result(sunrise, sunset):
-    print("Sunrise is at \(sunrise) and sunset is at \(sunset).")
-case let .failure(message):
-    print("Failure...  \(message)")
-case let .timeChange(sleep):
-    print("... \(sleep)")
-}
-
-//: experiment, add a third.
-
-
 //: example
 struct Card {
     var rank: Rank
@@ -257,11 +257,72 @@ anyCommonElements([1, 2, 3], [3])
 
 
 func isEven(num: Int) -> Bool {
-    if total > middle {
+    if num == 10 {
         return true
     } else {
-        print("total is not bigger")
         return false
     }
 }
+
+
+print(isEven(num: 10))
+
+
+
+
+
+
+
+
+class myPlanets{
+    enum Planet: Int {
+        case mercury = 1, venus, earth, mars, jupiter, saturn, uranus, naptune
+        func simpleDescription() -> String {
+            switch self {
+            case .mercury:
+                return "mercury"
+            case .venus:
+                return "venus"
+            case .earth:
+                return "Earth is the planet I live on"
+            case .mars:
+                return "mars"
+            case .jupiter:
+                return "jupiter"
+            case .saturn:
+                return "saturn"
+            case .uranus:
+                return "uranus"
+            case .naptune:
+                return "naptune"
+            }
+        }
+        func distance() -> String {
+            switch self {
+            case .mercury:
+                return "1st planet"
+            case .venus:
+                return "2nd planet"
+            case .earth:
+                return "Our planet"
+            case .mars:
+                return "Middle planet"
+            case .jupiter:
+                return "5th planet"
+            case .saturn:
+                return "6th planet"
+            case .uranus:
+                return "7th planet"
+            case .naptune:
+                return "8th planet"
+            }
+        }
+    }
+}
+
+let earth = myPlanets.Planet.earth.simpleDescription()
+print(earth)
+
+
+
 
